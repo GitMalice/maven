@@ -1,0 +1,13 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Maven Clean and build'){
+            steps {
+                bat 'mvn clean package'
+                bat 'java -jar target/javaApp-1.0-SNAPSHOT.jar'
+            }
+        }
+    }
+}
