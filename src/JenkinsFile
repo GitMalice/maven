@@ -9,5 +9,16 @@ pipeline {
                 bat 'java -jar target/javaApp-1.0-SNAPSHOT.jar'
             }
         }
+        stage('Run') {
+            steps {
+                bat 'mvn test'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                    jacoco execPattern: 'target/*.exec'
+                }
+            }
+        }
     }
 }
